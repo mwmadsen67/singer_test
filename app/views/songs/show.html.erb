@@ -1,0 +1,19 @@
+<h1>Song Show Page</h1>
+<a href="<%= songs_url %>">Back to all songs</a>
+
+<h2><%= @song.body %></h2>
+<form action="<%= song_url(@song)%>" method="post">
+    <input type="hidden" name="_method" value="delete">
+
+    <input type="submit" value="Delete the Song">
+</form>
+<a href="<%= edit_song_url(@song) %>">Edit the song</a>
+
+<h3>By: <%= @song.author.username %></h3>
+
+<h3>Liked By: </h3>
+<ul>
+    <% @song.likers.each do |liker| %>
+        <li><%= liker.username %></li>
+    <% end %>
+</ul>

@@ -1,0 +1,9 @@
+<h1>All of the users!</h1>
+
+<ul>
+    <% @users.each do |user| %>
+        <%= render "user", user: user, action: :index %>
+        <%#= render "banana", pineapple: user %>
+        <%#= render partial (_banana.html.erb), pineapple is the local variable you'll have access to in _banana, the last user is the user from the each loop in the pipes %>
+    <% end %>
+</ul>

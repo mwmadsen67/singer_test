@@ -1,0 +1,14 @@
+<h1>All the Songs</h1>
+
+
+<ul>
+    <% @songs.each do |song| %>
+        <li><%= song.body %> - <%= song.author.username %></li>
+        <a href="<%= song_url(song) %>">Show Page</a>
+    <% end %>
+    
+</ul>
+
+<% if logged_in? %>
+    <a href="<%= new_song_url %>">New Song</a>
+<% end %>

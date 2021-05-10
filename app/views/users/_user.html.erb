@@ -1,0 +1,12 @@
+<% if action == :show %>
+    <li>
+        <a href="<%= users_url %>">Users Index</a>
+    </li>
+    <li>
+        <a href="<%= songs_url %>">Songs Index</a>
+    </li>
+<% else %>
+    <li>
+        <%= user.username %> - <a href="<%= user_url(user) %>">Show Page</a>
+    </li>
+<% end %>

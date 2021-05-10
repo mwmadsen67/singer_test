@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Singer</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+<% # debugger %>
+    <%
+=begin%>
+    <a href="<%= new_song_url %>">Create a Song</a>
+    <% if logged_in? %>
+      <h2>Welcome, <%= current_user.username %>!</h2>
+      <form action='<%= session_url %>' method='post'>
+        <%= auth_token %>
+          <input name='_method' value='delete' type='hidden' />
+          <input type='submit' value='Logout' />
+      </form>
+    <% else %>
+      <a href="<%= new_session_url %>">Login</a>
+      <a href="<%= new_user_url %>">Sign up</a>
+    <% end %>
+    <% if flash[:errors] %>
+        <ul>
+            <% flash[:errors].each do |error| %>
+                <li><%= error %></li>
+            <% end %>
+        </ul>
+    <% end %>
+    <% if flash[:success] %> <!-- for both flash && flash.now -->
+        <ul>
+            <% flash[:success].each do |msg| %> <!-- ordinary ruby obj/arr -->
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    <% end %>
+<%
+=end%>
+    <%= yield %> <!-- application.html.erb gets rendered with every view -->
+</body>
+
+</html>

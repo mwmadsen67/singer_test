@@ -1,0 +1,24 @@
+<a href="<%= songs_url %>">All Songs</a>
+
+
+<% if edit %> <!-- cf. edit.html.erb -->
+    <% action = song_url(song) %> <!-- cf. @song.id -->
+    <% button_text = "Edit the Song" %>
+<% else %>
+    <% action = songs_url %>
+    <% button_text = "Sing a Song" %>
+<% end %>
+
+
+<form action="<%= action %>" method="post"> <!-- forms only accept get and post -->
+    <%= auth_token %>
+
+    <% if edit %>
+        <input type="hidden" name="_method" value="patch"> <!-- override the form method -->
+    <% end %>
+
+    <label for="song_body">Body</label>
+    <input type="text" name="song[body]" id="song_body" value="<%= song.body %>"> <!-- input id has to match with label 'for' -->
+
+    <input type="submit" value="<%= button_text %>"> 
+</form>
